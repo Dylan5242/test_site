@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Портфолио</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<nav class="navbar">
+    <div class="container">
+
+        <!-- ЛОГО СЛЕВА -->
+        <div class="navbar-logo">
+            <a href="index.html">
+                <img src="logo.png" alt="Лого">
+            </a>
+        </div>
+
+        <!-- МЕНЮ ДЛЯ ПК -->
+        <ul class="navbar-nav">
+            <li class="nav-item"><a class="nav-link" href="index.html">Главная</a></li>
+            <li class="nav-item"><a class="nav-link" href="about.html">О нас</a></li>
+            <li class="nav-item"><a class="nav-link" href="portfolio.html">Портфолио</a></li>
+            <li class="nav-item"><a class="nav-link" href="services.html">Услуги</a></li>
+            <li class="nav-item"><a class="nav-link active" href="contacts.html">Контакты</a></li>
+        </ul>
+
+        <!-- БУРГЕР ДЛЯ МОБИЛКИ -->
+        <button class="burger" id="burgerBtn">
+            <span class="line line1"></span>
+            <span class="line line2"></span>
+            <span class="line line3"></span>
+
+            <!-- Крестик, скрытый по умолчанию -->
+            <span class="burger-close">&#10060;</span>
+        </button>
+        <!--        <p>Закрыть: &#10060;</p>-->
+
+    </div>
+
+    <!-- ВЫПАДАЮЩЕЕ МЕНЮ ДЛЯ МОБИЛКИ -->
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="index.html">Главная</a>
+        <a href="about.html">О нас</a>
+        <a href="portfolio.html">Портфолио</a>
+        <a href="services.html">Услуги</a>
+        <a href="contacts.html">Контакты</a>
+    </div>
+</nav>
+
+
+
+<main id="contacts" class="page-container">
+    <header class="section-header">
+        <h1 class="header">Контакты</h1>
+        <p class="section-lead">Свяжитесь со мной удобным для вас способом</p>
+    </header>
+
+    <section class="contacts-grid" aria-label="Контактная информация">
+        <article class="contact-card">
+            <div class="contact-icon">📞</div>
+            <h3 class="contact-title">Горячая линия</h3>
+            <p class="contact-text">Звоните для быстрой консультации и ответов на ваши вопросы</p>
+            <a href="tel:+78901234567" class="contact-link phone-link">+7 890 123 45 67</a>
+        </article>
+
+        <article class="contact-card">
+            <div class="contact-icon">✈️</div>
+            <h3 class="contact-title">Telegram</h3>
+            <p class="contact-text">Пишите в Telegram для оперативной связи и обсуждения проектов</p>
+            <a href="https://t.me/exampledisinger_dlyasite" target="_blank" rel="noopener noreferrer" class="contact-link telegram-link">
+                @exampledisinger_dlyasite
+            </a>
+        </article>
+
+        <article class="contact-card">
+            <div class="contact-icon">📧</div>
+            <h3 class="contact-title">Электронная почта</h3>
+            <p class="contact-text">Отправьте подробное описание проекта для детального обсуждения</p>
+            <a href="mailto:hello@example.com" class="contact-link email-link">hello@example.com</a>
+        </article>
+
+        <article class="contact-card">
+            <div class="contact-icon">🕒</div>
+            <h3 class="contact-title">Время работы</h3>
+            <p class="contact-text">Пн-Пт: 9:00 - 18:00<br>Сб: 10:00 - 16:00<br>Вс: выходной</p>
+            <div class="contact-info">Ответим в течение 1 часа</div>
+        </article>
+    </section>
+
+    <div class="contacts-actions">
+        <p>Не нашли подходящий способ связи? <strong>Закажите обратный звонок</strong></p>
+        <button class="btn btn-primary" id="openCallback">
+            Заказать звонок
+        </button>
+    </div>
+</main>
+
+
+<script>
+    const burgerBtn = document.getElementById('burgerBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    burgerBtn.addEventListener('click', () => {
+        burgerBtn.classList.toggle('active');
+        mobileMenu.classList.toggle('open');
+    });
+</script>
+
+<footer class="site-footer">
+    <hr>
+    <p>&copy; 2025 Сайт. Все права защищены.</p>
+    <p>Телефон: <a href="tel:+78901234567" class="footer-phone">+7 890 123 45 67</a></p>
+</footer>
+
+</body>
+</html>

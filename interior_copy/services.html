@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Title</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav class="navbar">
+    <div class="container">
+
+        <!-- ЛОГО СЛЕВА -->
+        <div class="navbar-logo">
+            <a href="index.html">
+                <img src="logo.png" alt="Лого">
+            </a>
+        </div>
+
+        <!-- МЕНЮ ДЛЯ ПК -->
+        <ul class="navbar-nav">
+            <li class="nav-item"><a class="nav-link" href="index.html">Главная</a></li>
+            <li class="nav-item"><a class="nav-link" href="about.html">О нас</a></li>
+            <li class="nav-item"><a class="nav-link" href="portfolio.html">Портфолио</a></li>
+            <li class="nav-item"><a class="nav-link active" href="services.html">Услуги</a></li>
+            <li class="nav-item"><a class="nav-link" href="contacts.html">Контакты</a></li>
+        </ul>
+
+        <!-- БУРГЕР ДЛЯ МОБИЛКИ -->
+        <button class="burger" id="burgerBtn">
+            <span class="line line1"></span>
+            <span class="line line2"></span>
+            <span class="line line3"></span>
+
+            <!-- Крестик, скрытый по умолчанию -->
+            <span class="burger-close">&#10060;</span>
+        </button>
+        <!--        <p>Закрыть: &#10060;</p>-->
+
+    </div>
+
+    <!-- ВЫПАДАЮЩЕЕ МЕНЮ ДЛЯ МОБИЛКИ -->
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="index.html">Главная</a>
+        <a href="about.html">О нас</a>
+        <a href="portfolio.html">Портфолио</a>
+        <a href="services.html">Услуги</a>
+        <a href="contacts.html">Контакты</a>
+    </div>
+</nav>
+
+<!-- ===== Секция "Мои услуги" ===== -->
+<main id="services" class="page-container">
+    <header class="header">
+        <h1>Услуги</h1>
+    </header>
+
+    <section class="services-grid" aria-label="Список услуг">
+        <article class="service-card">
+            <h3 class="service-title">Полный дизайн-проект интерьера</h3>
+            <p class="service-text">Проектирую интерьеры больших и маленьких квартир. Я знаю, как создать уют в любой комнате.</p>
+        </article>
+
+        <article class="service-card">
+            <h3 class="service-title">Эскизный проект</h3>
+            <p class="service-text">Создам основной комплект схем реализации для начала работы строителей на объекте.</p>
+        </article>
+
+        <article class="service-card">
+            <h3 class="service-title">Планировочное решение</h3>
+            <p class="service-text">Организую пространство с учётом функциональности и привычек вашей семьи.</p>
+        </article>
+    </section>
+
+    <div class="section-actions">
+        <button
+                class="btn btn-primary btn-lg"
+                id="openOrder"
+                type="button">
+            Заказать проект
+        </button>
+    </div>
+
+</main>
+
+<!-- ===== Нативная модалка <dialog> (форма заказа проекта) ===== -->
+<dialog id="orderDialog" aria-labelledby="orderTitle">
+    <form id="orderForm" method="dialog" novalidate>
+        <h2 id="orderTitle">Заказать проект</h2>
+
+        <label for="orderName">ФИО</label>
+        <input id="orderName" name="name" type="text" required minlength="2" placeholder="Иван Иванов">
+
+        <label for="orderPhone">Номер телефона</label>
+        <input id="orderPhone" name="phone" type="tel" required placeholder="+7 (900) 000-00-00"
+               pattern="^\+7 \(\d{3}\) \d{3}-\d{2}-\d{2}$" inputmode="tel" aria-describedby="phoneHelp">
+        <small id="phoneHelp">Формат: +7 (900) 000-00-00</small>
+
+        <label for="orderEmail">E-mail</label>
+        <input id="orderEmail" name="email" type="email" required placeholder="name@example.com">
+
+        <label for="orderType">Тип проекта</label>
+        <select id="orderType" name="project_type" required>
+            <option value="">Выберите тип проекта</option>
+            <option>Полный дизайн-проект</option>
+            <option>Эскизный проект</option>
+            <option>Планировочное решение</option>
+        </select>
+
+        <label for="orderMessage">Комментарий (опционально)</label>
+        <textarea id="orderMessage" name="message" rows="3" placeholder="Коротко опишите задачу — площадь, сроки, предпочтения"></textarea>
+
+        <menu class="dialog-actions">
+            <button id="cancelOrder" type="button">Закрыть</button>
+            <button type="submit" class="btn btn-primary">Отправить заявку</button>
+        </menu>
+    </form>
+</dialog>
+
+<footer class="site-footer">
+    <hr>
+    <p>&copy; 2025 Сайт. Все права защищены.</p>
+    <p>Телефон: <a href="tel:+78901234567" class="footer-phone">+7 890 123 45 67</a></p>
+</footer>
+
+<!-- ===== JS (вставить в конец страницы или в main.js) ===== -->
+<script>
+    /* ====== Навигация: бургер (мобильное меню) — оставлена как у тебя ====== */
+    (function(){
+        const burger = document.getElementById('burgerBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        if (burger) {
+            burger.addEventListener('click', () => {
+                const open = burger.classList.toggle('active');
+                if (open) {
+                    mobileMenu.classList.add('open');
+                    mobileMenu.setAttribute('aria-hidden','false');
+                } else {
+                    mobileMenu.classList.remove('open');
+                    mobileMenu.setAttribute('aria-hidden','true');
+                }
+            });
+        }
+
+        // Закрыть мобильное меню при клике по ссылке
+        mobileMenu?.addEventListener('click', (e) => {
+            if (e.target.tagName === 'A') {
+                burger.classList.remove('active');
+                mobileMenu.classList.remove('open');
+                mobileMenu.setAttribute('aria-hidden','true');
+            }
+        });
+    })();
+
+    /* ====== Модалка <dialog> — надёжный обработчик открытия/закрытия + валидация ====== */
+    (function(){
+        const dialog = document.getElementById('orderDialog');
+        const openBtn = document.getElementById('openOrder');
+        const closeBtn = document.getElementById('cancelOrder');
+        const form = document.getElementById('orderForm');
+        const phone = document.getElementById('orderPhone');
+
+        let lastActive = null;
+
+        if (!dialog) {
+            console.warn('Dialog #orderDialog не найден в DOM.');
+            return;
+        }
+
+        // Открытие (сохранение фокуса)
+        openBtn?.addEventListener('click', () => {
+            lastActive = document.activeElement;
+            if (typeof dialog.showModal === 'function') {
+                dialog.showModal();
+            } else {
+                // fallback: показываем простую реализацию
+                dialog.setAttribute('open', '');
+                dialog.style.display = 'block';
+                document.body.style.overflow = 'hidden';
+            }
+            // фокус в первом элементе
+            setTimeout(()=> dialog.querySelector('input,select,textarea,button')?.focus(), 30);
+        });
+
+        // Универсальная функция закрытия
+        function closeDialog(reason = 'cancel') {
+            try {
+                if (typeof dialog.close === 'function' && typeof dialog.showModal === 'function') {
+                    dialog.close(reason);
+                } else {
+                    dialog.removeAttribute('open');
+                    dialog.style.display = 'none';
+                    document.body.style.overflow = '';
+                }
+            } finally {
+                lastActive?.focus?.();
+            }
+        }
+
+        // Закрытие по кнопке
+        if (closeBtn) closeBtn.addEventListener('click', () => closeDialog('cancel'));
+
+        // Поддержка элементов с data-close внутри диалога (если добавишь)
+        dialog.querySelectorAll('[data-close]').forEach(el => el.addEventListener('click', () => closeDialog('cancel')));
+
+        // Закрытие при клике по backdrop (нативный <dialog> может таргетировать сам dialog)
+        dialog.addEventListener('click', (e) => {
+            if (e.target === dialog) closeDialog('backdrop');
+        });
+
+        // Esc — гарантированное закрытие (fallback)
+        window.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && (dialog.open || dialog.hasAttribute('open'))) {
+                e.stopPropagation();
+                closeDialog('escape');
+            }
+        });
+
+        // Обработка события cancel (нативный dialog)
+        dialog.addEventListener('cancel', () => {
+            // возврат фокуса будет выполнен в closeDialog/close обработчике
+            setTimeout(() => lastActive?.focus?.(), 0);
+        });
+
+        // Обработка submit — валидация + закрытие при успехе
+        form?.addEventListener('submit', (e) => {
+            // Сброс кастомных сообщений
+            [...form.elements].forEach(el => el.setCustomValidity?.(''));
+
+            // Встроенная проверка
+            if (!form.checkValidity()) {
+                e.preventDefault();
+                // Кастомные подсказки
+                const phoneEl = form.elements['phone'];
+                if (phoneEl && phoneEl.validity && phoneEl.validity.patternMismatch) {
+                    phoneEl.setCustomValidity('Введите номер в формате +7 (900) 000-00-00');
+                }
+                form.reportValidity();
+                // Пометка невалидных полей
+                [...form.elements].forEach(el => { if (el.willValidate) el.toggleAttribute('aria-invalid', !el.checkValidity()); });
+                return;
+            }
+
+            // Симуляция отправки (без сервера)
+            e.preventDefault();
+            form.reset();
+            closeDialog('success');
+
+            // Показываем простой feedback (замени на свой toast при необходимости)
+            setTimeout(() => alert('Заявка принята. Спасибо!'), 50);
+        });
+
+        // Простая маска телефона (нормализация ввода)
+        phone?.addEventListener('input', () => {
+            let digits = phone.value.replace(/\D/g, '').slice(0, 11);
+            digits = digits.replace(/^8/, '7');
+            const parts = [];
+            if (digits.length > 0) parts.push('+7');
+            if (digits.length >= 2) parts.push(' (' + digits.slice(1, 4) + ')');
+            if (digits.length >= 5) parts.push(' ' + digits.slice(4, 7));
+            if (digits.length >= 8) parts.push('-' + digits.slice(7, 9));
+            if (digits.length >= 10) parts.push('-' + digits.slice(9, 11));
+            phone.value = parts.join('');
+        });
+
+    })();
+</script>
+</body>
+</html>
